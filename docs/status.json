@@ -4,7 +4,9 @@
     "[03:32:20] [Minerador #1] ✅ Autenticado com sucesso na Twitch! (ID: 21107325, Login: Minerador #1)",
     "[03:32:21] [Minerador #1] ⭐ Assistindo live de 'Gaules'! Pontos: 0",
     "[03:32:21] [Minerador #1] ⭐ Assistindo live de 'Baiano'! Pontos: 1090",
-    "[03:48:21] [Minerador #1] 📴 Live de 'Baiano' finalizou; slot liberado."
+    "[03:48:21] [Minerador #1] 📴 Live de 'Baiano' finalizou; slot liberado.",
+    "[15:30:21] [Minerador #1] 📴 Live de 'Gaules' finalizou; slot liberado.",
+    "[15:31:21] [Minerador #1] ⭐ Assistindo live de 'Gaules'! Pontos: 0"
   ],
   "statuses": {
     "Minerador #1": {
@@ -66,7 +68,7 @@
           "login": "gaules",
           "points": 0,
           "title": "RERUN: Jogos Variados! - !socio - Siga @Gaules nas redes sociais!",
-          "viewers": 347,
+          "viewers": 422,
           "watching": true
         },
         "loud_coringa": {
