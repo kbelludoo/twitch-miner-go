@@ -1,0 +1,26 @@
+{
+  "accounts": [
+    {
+      "username": "seu_usuario_twitch",
+      "authToken": "SEU_OAUTH_TOKEN_AQUI",
+      "streamers": [
+        "gaules",
+        "alanzoka",
+        "casimito",
+        "loud_coringa",
+        "cellbit",
+        "baiano",
+        "nobru",
+        "brtt"
+      ],
+      "maxConcurrent": 6
+    }
+  ],
+  "settings": {
+    "checkIntervalSeconds": 60,
+    "autoClaimBonus": true,
+    "autoJoinRaid": true,
+    "followRaids": true,
+    "webDashboardPort": 3010
+  }
+}

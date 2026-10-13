@@ -1,0 +1,4 @@
+config.json
+*.log
+twitch-miner.exe
+twitch-miner-linux

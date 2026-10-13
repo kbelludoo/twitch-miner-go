@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Twitch Miner Go — Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --bg: #0e0e10;
+      --card: #18181b;
+      --accent: #9146ff;
+      --text: #efeff1;
+      --subtext: #adadb8;
+      --green: #00f59b;
+      --border: #26262c;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background: var(--bg); color: var(--text); padding: 20px; }
+    .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 25px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
+    .title { font-size: 24px; font-weight: 700; display: flex; align-items: center; gap: 10px; color: var(--text); }
+    .title span { color: var(--accent); }
+    .badge { background: rgba(145, 70, 255, 0.2); color: var(--accent); padding: 4px 10px; border-radius: 20px; font-size: 13px; font-weight: 600; border: 1px solid var(--accent); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-bottom: 25px; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; transition: transform 0.2s; }
+    .card:hover { transform: translateY(-2px); border-color: var(--accent); }
+    .card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .channel-name { font-size: 18px; font-weight: 600; }
+    .status-pill { font-size: 12px; padding: 3px 8px; border-radius: 12px; font-weight: 600; }
+    .status-live { background: rgba(0, 245, 155, 0.15); color: var(--green); border: 1px solid var(--green); }
+    .status-off { background: rgba(173, 173, 184, 0.1); color: var(--subtext); }
+    .points-val { font-size: 26px; font-weight: 700; color: var(--green); margin-bottom: 4px; }
+    .points-label { font-size: 12px; color: var(--subtext); }
+    .logs-container { background: #000; border: 1px solid var(--border); border-radius: 12px; padding: 15px; font-family: "Courier New", monospace; font-size: 13px; height: 260px; overflow-y: auto; color: #a3e635; }
+    .log-line { margin-bottom: 4px; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="title">🟣 <span>Twitch Miner Go</span></div>
+    <div class="badge">Ultra-Leve (~2MB RAM) • Auto-Baú (+50)</div>
+  </div>
+
+  <h2 style="font-size: 16px; margin-bottom: 15px; color: var(--subtext);">Canais Monitorados</h2>
+  <div class="grid" id="channelsGrid"></div>
+
+  <h2 style="font-size: 16px; margin-bottom: 15px; color: var(--subtext);">Terminal de Logs ao Vivo</h2>
+  <div class="logs-container" id="logsContainer"></div>
+
+  <script>
+    async function update() {
+      try {
+        let res;
+        try {
+          res = await fetch('status.json?t=' + Date.now());
+          if (!res.ok) throw new Error();
+        } catch {
+          res = await fetch('/api/status');
+        }
+        const data = await res.json();
+        
+        const grid = document.getElementById('channelsGrid');
+        grid.innerHTML = '';
+        
+        for (const [user, acc] of Object.entries(data.statuses || {})) {
+          for (const [streamer, info] of Object.entries(acc.streamers || {})) {
+            const isLive = info.isLive;
+            grid.innerHTML += `
+              <div class="card">
+                <div class="card-top">
+                  <div class="channel-name">${info.displayName || streamer}</div>
+                  <div class="status-pill ${isLive ? 'status-live' : 'status-off'}">
+                    ${isLive ? '● AO VIVO' : 'OFFLINE'}
+                  </div>
+                </div>
+                <div class="points-val">${info.points.toLocaleString()} pts</div>
+                <div class="points-label">${isLive ? (info.title || 'Em transmissão') : 'Aguardando live...'}</div>
+              </div>
+            `;
+          }
+        }
+        
+        const logsDiv = document.getElementById('logsContainer');
+        logsDiv.innerHTML = (data.logs || []).map(l => '<div class="log-line">' + l + '</div>').join('');
+        logsDiv.scrollTop = logsDiv.scrollHeight;
+      } catch (e) {
+        console.error(e);
+      }
+    }
+    update();
+    setInterval(update, 3000);
+  </script>
+</body>
+</html>
