@@ -2,88 +2,718 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Twitch Miner Go — Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🟣 Twitch Miner Go — Command Center</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🟣</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
+    
     :root {
-      --bg: #0e0e10;
-      --card: #18181b;
-      --accent: #9146ff;
-      --text: #efeff1;
-      --subtext: #adadb8;
-      --green: #00f59b;
-      --border: #26262c;
+      --bg: #07090e;
+      --card-bg: rgba(15, 23, 42, 0.75);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-hover: rgba(255, 255, 255, 0.14);
+      --accent: #00f0ff;
+      --accent-glow: rgba(0, 240, 255, 0.25);
+      --green: #10b981;
+      --green-glow: rgba(16, 185, 129, 0.25);
+      --gold: #f59e0b;
+      --gold-glow: rgba(245, 158, 11, 0.25);
+      --purple: #a855f7;
+      --cyan: #06b6d4;
+      --red: #ef4444;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-    body { background: var(--bg); color: var(--text); padding: 20px; }
-    .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 25px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
-    .title { font-size: 24px; font-weight: 700; display: flex; align-items: center; gap: 10px; color: var(--text); }
-    .title span { color: var(--accent); }
-    .badge { background: rgba(145, 70, 255, 0.2); color: var(--accent); padding: 4px 10px; border-radius: 20px; font-size: 13px; font-weight: 600; border: 1px solid var(--accent); }
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-bottom: 25px; }
-    .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; transition: transform 0.2s; }
-    .card:hover { transform: translateY(-2px); border-color: var(--accent); }
-    .card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-    .channel-name { font-size: 18px; font-weight: 600; }
-    .status-pill { font-size: 12px; padding: 3px 8px; border-radius: 12px; font-weight: 600; }
-    .status-live { background: rgba(0, 245, 155, 0.15); color: var(--green); border: 1px solid var(--green); }
-    .status-off { background: rgba(173, 173, 184, 0.1); color: var(--subtext); }
-    .points-val { font-size: 26px; font-weight: 700; color: var(--green); margin-bottom: 4px; }
-    .points-label { font-size: 12px; color: var(--subtext); }
-    .logs-container { background: #000; border: 1px solid var(--border); border-radius: 12px; padding: 15px; font-family: "Courier New", monospace; font-size: 13px; height: 260px; overflow-y: auto; color: #a3e635; }
-    .log-line { margin-bottom: 4px; white-space: pre-wrap; }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(0, 240, 255, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 90% 10%, rgba(168, 85, 247, 0.06) 0%, transparent 45%),
+        radial-gradient(circle at 50% 80%, rgba(16, 185, 129, 0.04) 0%, transparent 50%),
+        linear-gradient(to bottom, #07090e, #0a0e1a);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      min-height: 100vh;
+      padding: 24px;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1360px;
+      margin: 0 auto;
+    }
+
+    /* HEADER */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding: 22px 28px;
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 35px -10px rgba(0, 0, 0, 0.6);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .logo-badge {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(168, 85, 247, 0.3));
+      border: 1px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.7rem;
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+
+    .header-title h1 {
+      font-size: 1.45rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(90deg, #ffffff, #cbd5e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .header-title p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 16px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid var(--green);
+      color: var(--green);
+      box-shadow: 0 0 14px var(--green-glow);
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.9); opacity: 1; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+      70% { transform: scale(1.15); opacity: 0.8; box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+      100% { transform: scale(0.9); opacity: 1; }
+    }
+
+    .btn-action {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--card-border);
+      color: var(--text);
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-action:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* STATS HERO */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .hero-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .hero-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--card-hover);
+    }
+
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .hero-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .hero-icon {
+      font-size: 1.25rem;
+    }
+
+    .hero-val {
+      font-size: 1.8rem;
+      font-weight: 800;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: -0.02em;
+    }
+    .val-accent { color: var(--accent); text-shadow: 0 0 15px var(--accent-glow); }
+    .val-gold { color: var(--gold); text-shadow: 0 0 15px var(--gold-glow); }
+    .val-green { color: var(--green); text-shadow: 0 0 15px var(--green-glow); }
+    .val-purple { color: var(--purple); }
+
+    .hero-sub {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      margin-top: 6px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* PARTY FORMATION BANNER */
+    .party-banner {
+      background: linear-gradient(135deg, rgba(16, 24, 40, 0.9), rgba(15, 23, 42, 0.9));
+      border: 1px solid rgba(0, 240, 255, 0.2);
+      border-radius: 18px;
+      padding: 22px 28px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    .party-banner-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .party-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .party-tag {
+      background: rgba(0, 240, 255, 0.12);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .party-slots {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+    }
+
+    .party-slot-card {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 14px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+    .party-slot-card.leader {
+      border-color: rgba(245, 158, 11, 0.4);
+      background: linear-gradient(90deg, rgba(245, 158, 11, 0.08), rgba(0, 0, 0, 0.35));
+    }
+
+    .slot-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      flex-shrink: 0;
+    }
+    .slot-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .slot-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .slot-role {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .slot-badge {
+      font-size: 0.68rem;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+    .badge-leader { background: rgba(245, 158, 11, 0.2); color: var(--gold); border: 1px solid var(--gold); }
+    .badge-healer { background: rgba(16, 185, 129, 0.2); color: var(--green); border: 1px solid var(--green); }
+    .badge-tank { background: rgba(6, 182, 212, 0.2); color: var(--cyan); border: 1px solid var(--cyan); }
+    .badge-dps { background: rgba(168, 85, 247, 0.2); color: var(--purple); border: 1px solid var(--purple); }
+
+    /* ACCOUNTS GRID */
+    .section-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      color: #fff;
+    }
+
+    .accounts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+
+    .acc-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+    .acc-card:hover {
+      border-color: var(--card-hover);
+      box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    .acc-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+    .acc-title-group h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .acc-vocation-tag {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+      margin-top: 3px;
+    }
+
+    .badge-online {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid var(--green);
+      color: var(--green);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* BARS */
+    .bar-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .bar-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 4px;
+    }
+    .bar-container {
+      height: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.4s ease;
+    }
+    .fill-hp { background: linear-gradient(90deg, #ef4444, #f87171); }
+    .fill-mana { background: linear-gradient(90deg, #06b6d4, #38bdf8); }
+
+    /* STATS TABLE IN CARD */
+    .acc-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      margin-bottom: 16px;
+    }
+    .acc-stat-item {
+      display: flex;
+      flex-direction: column;
+    }
+    .acc-stat-label {
+      font-size: 0.68rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .acc-stat-val {
+      font-size: 0.9rem;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      margin-top: 2px;
+    }
+
+    /* CONSOLE LOG BOX */
+    .acc-terminal {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      height: 72px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .acc-terminal::-webkit-scrollbar {
+      width: 4px;
+    }
+    .acc-terminal::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 2px;
+    }
+    .terminal-line {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    .terminal-line::before {
+      content: '›';
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    /* FOOTER */
+    .footer {
+      border-top: 1px solid var(--card-border);
+      padding-top: 20px;
+      margin-top: 10px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+    .footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  
+    .live-badge.offline {
+      background: rgba(239, 68, 68, 0.12);
+      border-color: var(--red);
+      color: var(--red);
+      box-shadow: none;
+    }
+    .live-badge.offline .pulse-dot {
+      background: var(--red);
+      animation: none;
+    }
+    .badge-offline, .badge-idle {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .badge-offline {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid var(--red);
+      color: var(--red);
+    }
+    .badge-idle {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+    }
+    .fill-xp { background: linear-gradient(90deg, #a855f7, #c084fc); }
+    .fill-stam { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+    .fill-bestiary { background: linear-gradient(90deg, #7c3aed, #a855f7); }
+    .guide-block {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 22px 28px;
+      margin-bottom: 24px;
+    }
+    .guide-block p { color: var(--text-muted); font-size: 0.92rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin-top: 14px; }
+    th, td { padding: 12px 14px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    th { color: var(--text-muted); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; }
+    td.win { color: var(--accent); font-weight: 700; }
+    pre, .code-box {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 10px;
+      padding: 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      overflow-x: auto;
+      margin-top: 10px;
+      white-space: pre-wrap;
+    }
+    code { font-family: 'JetBrains Mono', monospace; color: var(--accent); }
+    .step-list { display: flex; flex-direction: column; gap: 14px; margin-top: 16px; }
+    .step-item { display: flex; gap: 14px; align-items: flex-start; }
+    .step-num {
+      width: 32px; height: 32px; border-radius: 10px;
+      background: rgba(0, 240, 255, 0.12);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      flex-shrink: 0;
+    }
+    .channels-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .acc-terminal.tall { height: 220px; }
+    .mini-note { font-size: 0.75rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; }
+
   </style>
 </head>
 <body>
-  <div class="header">
-    <div class="title">🟣 <span>Twitch Miner Go</span></div>
-    <div class="badge">Ultra-Leve (~2MB RAM) • Auto-Baú (+50)</div>
+  <div class="container">
+    <header class="header">
+      <div class="header-left">
+        <div class="logo-badge">🟣</div>
+        <div class="header-title">
+          <h1>Twitch Miner Go — Command Center</h1>
+          <p>
+            <span>status.json</span>
+            <span>•</span>
+            <span style="color: var(--accent);">Minerador #1</span>
+            <span>•</span>
+            <span>Somente leitura</span>
+          </p>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="live-badge" id="liveBadge">
+          <div class="pulse-dot"></div>
+          <span id="liveStatusText">CARREGANDO</span>
+        </div>
+        <button class="btn-action" type="button" onclick="update()">↻ Atualizar</button>
+      </div>
+    </header>
+
+    <section class="hero-grid">
+      <div class="hero-card">
+        <div class="hero-card-header"><span class="hero-label">Canais</span><span class="hero-icon">📡</span></div>
+        <div class="hero-val val-accent" id="valChannels">—</div>
+        <div class="hero-sub">Minerador #1</div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-header"><span class="hero-label">Ao vivo</span><span class="hero-icon">🟣</span></div>
+        <div class="hero-val val-green" id="valLive">—</div>
+        <div class="hero-sub" id="subWatch">Assistindo —</div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-header"><span class="hero-label">Pontos</span><span class="hero-icon">⭐</span></div>
+        <div class="hero-val val-gold" id="valPoints">—</div>
+        <div class="hero-sub">Soma dos canais</div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-header"><span class="hero-label">Conta</span><span class="hero-icon">⛏️</span></div>
+        <div class="hero-val val-purple" id="valMiners">—</div>
+        <div class="hero-sub">Rótulo público</div>
+      </div>
+    </section>
+
+    <div class="section-title"><span>🟣</span> Canais</div>
+    <div class="channels-grid" id="channelsGrid">
+      <div style="color: var(--text-muted); padding: 12px;">Carregando canais...</div>
+    </div>
+
+    <div class="section-title"><span>›</span> Terminal</div>
+    <div class="acc-terminal tall" id="logsContainer"><div class="terminal-line">—</div></div>
+
+    <footer class="footer">
+      <p id="footerUpdated">Telemetria somente leitura</p>
+      <p style="margin-top: 6px;">Twitch Miner Go • <a href="https://github.com/kbelludoo/twitch-miner-go" target="_blank" rel="noopener">Repositório GitHub</a></p>
+    </footer>
   </div>
-
-  <h2 style="font-size: 16px; margin-bottom: 15px; color: var(--subtext);">Canais Monitorados</h2>
-  <div class="grid" id="channelsGrid"></div>
-
-  <h2 style="font-size: 16px; margin-bottom: 15px; color: var(--subtext);">Terminal de Logs ao Vivo</h2>
-  <div class="logs-container" id="logsContainer"></div>
-
   <script>
+    function esc(value) {
+      return String(value ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+    function missing(v) { return v === undefined || v === null || v === ''; }
+    function formatNumber(num) {
+      if (missing(num) || Number.isNaN(Number(num))) return '—';
+      const n = Number(num);
+      if (Math.abs(n) >= 1000000) return (n / 1000000).toFixed(2) + 'kk';
+      if (Math.abs(n) >= 1000) return (n / 1000).toFixed(1) + 'k';
+      return n.toLocaleString('pt-BR');
+    }
+    function setLive(ok, text) {
+      document.getElementById('liveBadge').className = 'live-badge' + (ok ? '' : ' offline');
+      document.getElementById('liveStatusText').textContent = text;
+    }
+
+    async function loadStatus() {
+      try {
+        const res = await fetch('status.json?t=' + Date.now(), { cache: 'no-store', method: 'GET' });
+        if (res.ok) return await res.json();
+      } catch (e) {}
+      const res = await fetch('/api/status', { cache: 'no-store', method: 'GET' });
+      if (!res.ok) throw new Error('status');
+      return await res.json();
+    }
+
     async function update() {
       try {
-        let res;
-        try {
-          res = await fetch('status.json?t=' + Date.now());
-          if (!res.ok) throw new Error();
-        } catch {
-          res = await fetch('/api/status');
-        }
-        const data = await res.json();
-        
-        const grid = document.getElementById('channelsGrid');
-        grid.innerHTML = '';
-        
-        for (const [user, acc] of Object.entries(data.statuses || {})) {
-          for (const [streamer, info] of Object.entries(acc.streamers || {})) {
-            const isLive = info.isLive;
-            grid.innerHTML += `
-              <div class="card">
-                <div class="card-top">
-                  <div class="channel-name">${info.displayName || streamer}</div>
-                  <div class="status-pill ${isLive ? 'status-live' : 'status-off'}">
-                    ${isLive ? '● AO VIVO' : 'OFFLINE'}
-                  </div>
-                </div>
-                <div class="points-val">${info.points.toLocaleString()} pts</div>
-                <div class="points-label">${isLive ? (info.title || 'Em transmissão') : 'Aguardando live...'}</div>
-              </div>
-            `;
-          }
-        }
-        
-        const logsDiv = document.getElementById('logsContainer');
-        logsDiv.innerHTML = (data.logs || []).map(l => '<div class="log-line">' + l + '</div>').join('');
-        logsDiv.scrollTop = logsDiv.scrollHeight;
+        const data = await loadStatus();
+        const statuses = data && data.statuses && typeof data.statuses === 'object' ? data.statuses : {};
+        const accounts = Object.keys(statuses);
+        let channels = 0, live = 0, watching = 0, points = 0;
+        let pointsKnown = false;
+        const cards = [];
+        accounts.forEach((key, idx) => {
+          const acc = statuses[key] || {};
+          const streamers = acc.streamers && typeof acc.streamers === 'object' ? acc.streamers : {};
+          const label = 'Minerador #' + (idx + 1);
+          Object.keys(streamers).forEach((sk) => {
+            const info = streamers[sk] || {};
+            channels++;
+            if (info.isLive) live++;
+            if (info.watching) watching++;
+            if (!missing(info.points)) { points += Number(info.points) || 0; pointsKnown = true; }
+            const name = !missing(info.displayName) ? info.displayName : (!missing(info.login) ? info.login : sk);
+            const title = info.isLive ? (missing(info.title) ? '—' : info.title) : '—';
+            const viewers = missing(info.viewers) ? '—' : formatNumber(info.viewers);
+            const watchLabel = missing(info.watching) ? '—' : (info.watching ? 'sim' : 'não');
+            cards.push(
+              '<div class="acc-card"><div class="acc-top"><div class="acc-title-group"><h3><span>🟣</span><span>' + esc(name) + '</span></h3>' +
+              '<div class="acc-vocation-tag">' + label + '</div></div>' +
+              '<span class="' + (info.isLive ? 'badge-online' : 'badge-offline') + '">' + (info.isLive ? 'AO VIVO' : 'OFFLINE') + '</span></div>' +
+              '<div class="acc-stats">' +
+                '<div class="acc-stat-item"><span class="acc-stat-label">Pontos</span><span class="acc-stat-val" style="color:var(--gold);">' + formatNumber(info.points) + '</span></div>' +
+                '<div class="acc-stat-item"><span class="acc-stat-label">Viewers</span><span class="acc-stat-val">' + viewers + '</span></div>' +
+                '<div class="acc-stat-item"><span class="acc-stat-label">Assistindo</span><span class="acc-stat-val">' + watchLabel + '</span></div>' +
+                '<div class="acc-stat-item"><span class="acc-stat-label">Título</span><span class="acc-stat-val">' + esc(title) + '</span></div>' +
+              '</div></div>'
+            );
+          });
+        });
+        document.getElementById('valChannels').textContent = channels ? String(channels) : '—';
+        document.getElementById('valLive').textContent = accounts.length ? String(live) : '—';
+        document.getElementById('subWatch').textContent = 'Assistindo ' + (accounts.length ? String(watching) : '—');
+        document.getElementById('valPoints').textContent = pointsKnown ? formatNumber(points) : '—';
+        document.getElementById('valMiners').textContent = accounts.length ? String(accounts.length) : '—';
+        document.getElementById('channelsGrid').innerHTML = cards.length
+          ? cards.join('')
+          : '<div style="color: var(--text-muted); padding: 12px;">Nenhum canal na telemetria.</div>';
+        const logs = Array.isArray(data.logs) ? data.logs.filter((l) => !missing(l)) : [];
+        document.getElementById('logsContainer').innerHTML = logs.length
+          ? logs.slice(-12).map((l) => '<div class="terminal-line">' + esc(l) + '</div>').join('')
+          : '<div class="terminal-line">—</div>';
+        setLive(true, (accounts.length || 1) && accounts.length ? 'MINERADOR #1' : 'ONLINE');
+        if (!accounts.length) setLive(true, 'SEM CONTA');
+        document.getElementById('footerUpdated').textContent = 'Atualizado ' + new Date().toLocaleTimeString('pt-BR') + ' • somente leitura';
       } catch (e) {
-        console.error(e);
+        setLive(false, 'OFFLINE');
       }
     }
     update();
