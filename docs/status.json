@@ -1,0 +1,97 @@
+{
+  "logs": [
+    "[03:32:20] Iniciando Twitch Miner Go para 1 conta(s)...",
+    "[03:32:20] [Minerador #1] ✅ Autenticado com sucesso na Twitch! (Sessão Autenticada)",
+    "[03:32:21] [Minerador #1] ⭐ Assistindo live de 'Gaules'! Pontos: 0",
+    "[03:32:21] [Minerador #1] ⭐ Assistindo live de 'Baiano'! Pontos: 1090",
+    "[03:48:21] [Minerador #1] 📴 Live de 'Baiano' finalizou; slot liberado."
+  ],
+  "statuses": {
+    "Minerador #1": {
+      "username": "Minerador #1",
+      "userId": "anonimo",
+      "streamers": {
+        "alanzoka": {
+          "login": "alanzoka",
+          "displayName": "alanzoka",
+          "isLive": false,
+          "title": "",
+          "viewers": 0,
+          "points": 0,
+          "watching": false,
+          "lastClaimAt": ""
+        },
+        "baiano": {
+          "login": "baiano",
+          "displayName": "Baiano",
+          "isLive": false,
+          "title": "",
+          "viewers": 0,
+          "points": 1090,
+          "watching": false,
+          "lastClaimAt": ""
+        },
+        "brtt": {
+          "login": "brtt",
+          "displayName": "brtt",
+          "isLive": false,
+          "title": "",
+          "viewers": 0,
+          "points": 0,
+          "watching": false,
+          "lastClaimAt": ""
+        },
+        "casimito": {
+          "login": "casimito",
+          "displayName": "casimito",
+          "isLive": false,
+          "title": "",
+          "viewers": 0,
+          "points": 0,
+          "watching": false,
+          "lastClaimAt": ""
+        },
+        "cellbit": {
+          "login": "cellbit",
+          "displayName": "Cellbit",
+          "isLive": false,
+          "title": "",
+          "viewers": 0,
+          "points": 0,
+          "watching": false,
+          "lastClaimAt": ""
+        },
+        "gaules": {
+          "login": "gaules",
+          "displayName": "Gaules",
+          "isLive": true,
+          "title": "RERUN: Jogos Variados! - !socio - Siga @Gaules nas redes sociais!",
+          "viewers": 275,
+          "points": 0,
+          "watching": true,
+          "lastClaimAt": ""
+        },
+        "loud_coringa": {
+          "login": "loud_coringa",
+          "displayName": "",
+          "isLive": false,
+          "title": "",
+          "viewers": 0,
+          "points": 0,
+          "watching": false,
+          "lastClaimAt": ""
+        },
+        "nobru": {
+          "login": "nobru",
+          "displayName": "NOBRU",
+          "isLive": false,
+          "title": "",
+          "viewers": 0,
+          "points": 0,
+          "watching": false,
+          "lastClaimAt": ""
+        }
+      }
+    }
+  }
+}
