@@ -7,20 +7,21 @@
     "[03:48:21] [Minerador #1] 📴 Live de 'Baiano' finalizou; slot liberado.",
     "[15:30:21] [Minerador #1] 📴 Live de 'Gaules' finalizou; slot liberado.",
     "[15:31:21] [Minerador #1] ⭐ Assistindo live de 'Gaules'! Pontos: 0",
-    "[18:39:21] [Minerador #1] ⭐ Assistindo live de 'alanzoka'! Pontos: 0"
+    "[18:39:21] [Minerador #1] ⭐ Assistindo live de 'alanzoka'! Pontos: 0",
+    "[02:06:21] [Minerador #1] 📴 Live de 'alanzoka' finalizou; slot liberado."
   ],
   "statuses": {
     "Minerador #1": {
       "streamers": {
         "alanzoka": {
           "displayName": "alanzoka",
-          "isLive": true,
+          "isLive": false,
           "lastClaimAt": "",
           "login": "alanzoka",
           "points": 0,
-          "title": "terminamos silver pines, ja foi jogo com amigos e valor mortis",
-          "viewers": 4151,
-          "watching": true
+          "title": "",
+          "viewers": 0,
+          "watching": false
         },
         "baiano": {
           "displayName": "Baiano",
