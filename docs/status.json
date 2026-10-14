@@ -8,20 +8,21 @@
     "[15:30:21] [Minerador #1] 📴 Live de 'Gaules' finalizou; slot liberado.",
     "[15:31:21] [Minerador #1] ⭐ Assistindo live de 'Gaules'! Pontos: 0",
     "[18:39:21] [Minerador #1] ⭐ Assistindo live de 'alanzoka'! Pontos: 0",
-    "[02:06:21] [Minerador #1] 📴 Live de 'alanzoka' finalizou; slot liberado."
+    "[02:06:21] [Minerador #1] 📴 Live de 'alanzoka' finalizou; slot liberado.",
+    "[18:17:21] [Minerador #1] ⭐ Assistindo live de 'alanzoka'! Pontos: 0"
   ],
   "statuses": {
     "Minerador #1": {
       "streamers": {
         "alanzoka": {
           "displayName": "alanzoka",
-          "isLive": false,
+          "isLive": true,
           "lastClaimAt": "",
           "login": "alanzoka",
           "points": 0,
-          "title": "",
+          "title": "ENSHROUDED 1.0 E CASTLEVANIA: BELMONT'S CURSE",
           "viewers": 0,
-          "watching": false
+          "watching": true
         },
         "baiano": {
           "displayName": "Baiano",
@@ -70,7 +71,7 @@
           "login": "gaules",
           "points": 0,
           "title": "RERUN: Jogos Variados! - !socio - Siga @Gaules nas redes sociais!",
-          "viewers": 340,
+          "viewers": 345,
           "watching": true
         },
         "loud_coringa": {
