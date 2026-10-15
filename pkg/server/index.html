@@ -27,6 +27,7 @@
     .channel-name { font-size: 18px; font-weight: 600; }
     .status-pill { font-size: 12px; padding: 3px 8px; border-radius: 12px; font-weight: 600; }
     .status-live { background: rgba(0, 245, 155, 0.15); color: var(--green); border: 1px solid var(--green); }
+    .status-queue { background: rgba(145, 70, 255, 0.15); color: var(--accent); border: 1px solid var(--accent); }
     .status-off { background: rgba(173, 173, 184, 0.1); color: var(--subtext); }
     .points-val { font-size: 26px; font-weight: 700; color: var(--green); margin-bottom: 4px; }
     .points-label { font-size: 12px; color: var(--subtext); }
@@ -40,7 +41,7 @@
     <div class="badge">Ultra-Leve (~2MB RAM) • Auto-Baú (+50)</div>
   </div>
 
-  <h2 style="font-size: 16px; margin-bottom: 15px; color: var(--subtext);">Canais Monitorados</h2>
+  <h2 id="watchHeading" style="font-size: 16px; margin-bottom: 15px; color: var(--subtext);">Canais monitorados</h2>
   <div class="grid" id="channelsGrid"></div>
 
   <h2 style="font-size: 16px; margin-bottom: 15px; color: var(--subtext);">Terminal de Logs ao Vivo</h2>
@@ -54,16 +55,21 @@
         
         const grid = document.getElementById('channelsGrid');
         grid.innerHTML = '';
+        let watchingCount = 0;
         
         for (const [user, acc] of Object.entries(data.statuses || {})) {
           for (const [streamer, info] of Object.entries(acc.streamers || {})) {
             const isLive = info.isLive;
+            const watching = info.watching;
+            if (watching) watchingCount++;
+            const pillClass = watching ? 'status-live' : (isLive ? 'status-queue' : 'status-off');
+            const pillText = watching ? '● ASSISTINDO' : (isLive ? 'AO VIVO' : 'OFFLINE');
             grid.innerHTML += `
               <div class="card">
                 <div class="card-top">
                   <div class="channel-name">${info.displayName || streamer}</div>
-                  <div class="status-pill ${isLive ? 'status-live' : 'status-off'}">
-                    ${isLive ? '● AO VIVO' : 'OFFLINE'}
+                  <div class="status-pill ${pillClass}">
+                    ${pillText}
                   </div>
                 </div>
                 <div class="points-val">${info.points.toLocaleString()} pts</div>
@@ -72,6 +78,7 @@
             `;
           }
         }
+        document.getElementById('watchHeading').textContent = 'Canais monitorados · assistindo ' + watchingCount;
         
         const logsDiv = document.getElementById('logsContainer');
         logsDiv.innerHTML = (data.logs || []).map(l => '<div class="log-line">' + l + '</div>').join('');
