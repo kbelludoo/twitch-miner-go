@@ -17,20 +17,21 @@
     "[18:26:21] [Minerador #1] ⭐ Assistindo live de 'alanzoka'! Pontos: 0",
     "[00:17:21] [Minerador #1] 📴 Live de 'alanzoka' finalizou; slot liberado.",
     "[04:50:21] [Minerador #1] 📴 Live de 'Baiano' finalizou; slot liberado.",
-    "[17:21:21] [Minerador #1] ⭐ Assistindo live de 'Baiano'! Pontos: 1090"
+    "[17:21:21] [Minerador #1] ⭐ Assistindo live de 'Baiano'! Pontos: 1090",
+    "[18:29:21] [Minerador #1] ⭐ Assistindo live de 'alanzoka'! Pontos: 0"
   ],
   "statuses": {
     "Minerador #1": {
       "streamers": {
         "alanzoka": {
           "displayName": "alanzoka",
-          "isLive": false,
+          "isLive": true,
           "lastClaimAt": "",
           "login": "alanzoka",
           "points": 0,
-          "title": "",
-          "viewers": 0,
-          "watching": false
+          "title": "nao sei, ja vi o trailer do gta vi",
+          "viewers": 193,
+          "watching": true
         },
         "baiano": {
           "displayName": "Baiano",
@@ -39,7 +40,7 @@
           "login": "baiano",
           "points": 1090,
           "title": "🟢 KC x MVK | WORLDS 2026 - FURIA APÓS ESSA SÉRIE! 🟢 🌴 !cupom !sadia !status !grupo !kbmidl",
-          "viewers": 1104,
+          "viewers": 1171,
           "watching": true
         },
         "brtt": {
@@ -79,7 +80,7 @@
           "login": "gaules",
           "points": 0,
           "title": "RERUN: Jogos Variados! - !socio - Siga @Gaules nas redes sociais!",
-          "viewers": 390,
+          "viewers": 398,
           "watching": true
         },
         "loud_coringa": {
