@@ -24,7 +24,8 @@
     "[03:35:21] [Minerador #1] ⭐ Assistindo live de 'Baiano'! Pontos: 1090",
     "[04:49:21] [Minerador #1] 📴 Live de 'Baiano' finalizou; slot liberado.",
     "[17:13:21] [Minerador #1] ⭐ Assistindo live de 'Baiano'! Pontos: 1090",
-    "[02:35:21] [Minerador #1] 📴 Live de 'Baiano' finalizou; slot liberado."
+    "[02:35:21] [Minerador #1] 📴 Live de 'Baiano' finalizou; slot liberado.",
+    "[17:25:21] [Minerador #1] ⭐ Assistindo live de 'Baiano'! Pontos: 1090"
   ],
   "statuses": {
     "Minerador #1": {
@@ -41,13 +42,13 @@
         },
         "baiano": {
           "displayName": "Baiano",
-          "isLive": false,
+          "isLive": true,
           "lastClaimAt": "",
           "login": "baiano",
           "points": 1090,
-          "title": "",
+          "title": "🟢 KC vs MVK (MD5) | WORLDS 2026 🟢 🌴 !cupom !sadia !status !grupo !kbmidl",
           "viewers": 0,
-          "watching": false
+          "watching": true
         },
         "brtt": {
           "displayName": "brtt",
