@@ -23,7 +23,8 @@
     "[03:34:21] [Minerador #1] 📴 Live de 'Baiano' finalizou; slot liberado.",
     "[03:35:21] [Minerador #1] ⭐ Assistindo live de 'Baiano'! Pontos: 1090",
     "[04:49:21] [Minerador #1] 📴 Live de 'Baiano' finalizou; slot liberado.",
-    "[17:13:21] [Minerador #1] ⭐ Assistindo live de 'Baiano'! Pontos: 1090"
+    "[17:13:21] [Minerador #1] ⭐ Assistindo live de 'Baiano'! Pontos: 1090",
+    "[02:35:21] [Minerador #1] 📴 Live de 'Baiano' finalizou; slot liberado."
   ],
   "statuses": {
     "Minerador #1": {
@@ -40,13 +41,13 @@
         },
         "baiano": {
           "displayName": "Baiano",
-          "isLive": true,
+          "isLive": false,
           "lastClaimAt": "",
           "login": "baiano",
           "points": 1090,
-          "title": "🟢 Reacts \u0026 Gameplays | IDL NIGHTS 🟢 🌴 !cupom !sadia !status !grupo !kbmidl",
-          "viewers": 468,
-          "watching": true
+          "title": "",
+          "viewers": 0,
+          "watching": false
         },
         "brtt": {
           "displayName": "brtt",
