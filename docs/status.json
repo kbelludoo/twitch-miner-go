@@ -26,20 +26,21 @@
     "[17:13:21] [Minerador #1] ⭐ Assistindo live de 'Baiano'! Pontos: 1090",
     "[02:35:21] [Minerador #1] 📴 Live de 'Baiano' finalizou; slot liberado.",
     "[17:25:21] [Minerador #1] ⭐ Assistindo live de 'Baiano'! Pontos: 1090",
-    "[02:31:21] [Minerador #1] 📴 Live de 'Baiano' finalizou; slot liberado."
+    "[02:31:21] [Minerador #1] 📴 Live de 'Baiano' finalizou; slot liberado.",
+    "[18:38:21] [Minerador #1] ⭐ Assistindo live de 'alanzoka'! Pontos: 0"
   ],
   "statuses": {
     "Minerador #1": {
       "streamers": {
         "alanzoka": {
           "displayName": "alanzoka",
-          "isLive": false,
+          "isLive": true,
           "lastClaimAt": "",
           "login": "alanzoka",
           "points": 0,
-          "title": "",
-          "viewers": 0,
-          "watching": false
+          "title": "TENEBRIS SOMNIA TERRORZINHO COM LIVE ACTION",
+          "viewers": 412,
+          "watching": true
         },
         "baiano": {
           "displayName": "Baiano",
