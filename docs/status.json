@@ -28,20 +28,21 @@
     "[17:25:21] [Minerador #1] ⭐ Assistindo live de 'Baiano'! Pontos: 1090",
     "[02:31:21] [Minerador #1] 📴 Live de 'Baiano' finalizou; slot liberado.",
     "[18:38:21] [Minerador #1] ⭐ Assistindo live de 'alanzoka'! Pontos: 0",
-    "[01:21:21] [Minerador #1] 📴 Live de 'alanzoka' finalizou; slot liberado."
+    "[01:21:21] [Minerador #1] 📴 Live de 'alanzoka' finalizou; slot liberado.",
+    "[18:41:21] [Minerador #1] ⭐ Assistindo live de 'alanzoka'! Pontos: 0"
   ],
   "statuses": {
     "Minerador #1": {
       "streamers": {
         "alanzoka": {
           "displayName": "alanzoka",
-          "isLive": false,
+          "isLive": true,
           "lastClaimAt": "",
           "login": "alanzoka",
           "points": 0,
-          "title": "",
+          "title": "gone fishing com o dino e o sangras e se der tempo terminar valor mortis e se der mais tempo ainda immersive sim de dinossauro",
           "viewers": 0,
-          "watching": false
+          "watching": true
         },
         "baiano": {
           "displayName": "Baiano",
