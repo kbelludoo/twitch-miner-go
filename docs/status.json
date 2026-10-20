@@ -27,20 +27,21 @@
     "[02:35:21] [Minerador #1] 📴 Live de 'Baiano' finalizou; slot liberado.",
     "[17:25:21] [Minerador #1] ⭐ Assistindo live de 'Baiano'! Pontos: 1090",
     "[02:31:21] [Minerador #1] 📴 Live de 'Baiano' finalizou; slot liberado.",
-    "[18:38:21] [Minerador #1] ⭐ Assistindo live de 'alanzoka'! Pontos: 0"
+    "[18:38:21] [Minerador #1] ⭐ Assistindo live de 'alanzoka'! Pontos: 0",
+    "[01:21:21] [Minerador #1] 📴 Live de 'alanzoka' finalizou; slot liberado."
   ],
   "statuses": {
     "Minerador #1": {
       "streamers": {
         "alanzoka": {
           "displayName": "alanzoka",
-          "isLive": true,
+          "isLive": false,
           "lastClaimAt": "",
           "login": "alanzoka",
           "points": 0,
-          "title": "TERMINAMOS TENEBRIS SOMNIA",
-          "viewers": 5225,
-          "watching": true
+          "title": "",
+          "viewers": 0,
+          "watching": false
         },
         "baiano": {
           "displayName": "Baiano",
@@ -89,7 +90,7 @@
           "login": "gaules",
           "points": 0,
           "title": "RERUN: Jogos Variados! - !socio - Siga @Gaules nas redes sociais!",
-          "viewers": 382,
+          "viewers": 368,
           "watching": true
         },
         "loud_coringa": {
