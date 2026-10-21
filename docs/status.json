@@ -32,20 +32,21 @@
     "[18:41:21] [Minerador #1] ⭐ Assistindo live de 'alanzoka'! Pontos: 0",
     "[00:32:21] [Minerador #1] 📴 Live de 'alanzoka' finalizou; slot liberado.",
     "[15:03:21] [Minerador #1] 📴 Live de 'Gaules' finalizou; slot liberado.",
-    "[15:25:21] [Minerador #1] ⭐ Assistindo live de 'Gaules'! Pontos: 0"
+    "[15:25:21] [Minerador #1] ⭐ Assistindo live de 'Gaules'! Pontos: 0",
+    "[19:03:21] [Minerador #1] ⭐ Assistindo live de 'alanzoka'! Pontos: 0"
   ],
   "statuses": {
     "Minerador #1": {
       "streamers": {
         "alanzoka": {
           "displayName": "alanzoka",
-          "isLive": false,
+          "isLive": true,
           "lastClaimAt": "",
           "login": "alanzoka",
           "points": 0,
-          "title": "",
+          "title": "mais gone fishing depois se der um immersive sim de dinossauro",
           "viewers": 0,
-          "watching": false
+          "watching": true
         },
         "baiano": {
           "displayName": "Baiano",
@@ -94,7 +95,7 @@
           "login": "gaules",
           "points": 0,
           "title": "RERUN: Jogos Variados! - !socio - Siga @Gaules nas redes sociais!",
-          "viewers": 314,
+          "viewers": 301,
           "watching": true
         },
         "loud_coringa": {
