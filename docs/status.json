@@ -35,20 +35,21 @@
     "[15:25:21] [Minerador #1] ⭐ Assistindo live de 'Gaules'! Pontos: 0",
     "[19:03:21] [Minerador #1] ⭐ Assistindo live de 'alanzoka'! Pontos: 0",
     "[00:16:21] [Minerador #1] 📴 Live de 'Gaules' finalizou; slot liberado.",
-    "[00:17:21] [Minerador #1] ⭐ Assistindo live de 'Gaules'! Pontos: 0"
+    "[00:17:21] [Minerador #1] ⭐ Assistindo live de 'Gaules'! Pontos: 0",
+    "[01:44:21] [Minerador #1] 📴 Live de 'alanzoka' finalizou; slot liberado."
   ],
   "statuses": {
     "Minerador #1": {
       "streamers": {
         "alanzoka": {
           "displayName": "alanzoka",
-          "isLive": true,
+          "isLive": false,
           "lastClaimAt": "",
           "login": "alanzoka",
           "points": 0,
-          "title": "gone fishing com amigos e immersive sim de dinossauro ja foram",
-          "viewers": 4556,
-          "watching": true
+          "title": "",
+          "viewers": 0,
+          "watching": false
         },
         "baiano": {
           "displayName": "Baiano",
@@ -97,7 +98,7 @@
           "login": "gaules",
           "points": 0,
           "title": "RERUN: Lobby do Abalo! - !socio - Siga @Gaules nas redes sociais!",
-          "viewers": 367,
+          "viewers": 322,
           "watching": true
         },
         "loud_coringa": {
