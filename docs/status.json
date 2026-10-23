@@ -38,7 +38,8 @@
     "[00:17:21] [Minerador #1] ⭐ Assistindo live de 'Gaules'! Pontos: 0",
     "[01:44:21] [Minerador #1] 📴 Live de 'alanzoka' finalizou; slot liberado.",
     "[18:33:21] [Minerador #1] ⭐ Assistindo live de 'alanzoka'! Pontos: 0",
-    "[01:14:21] [Minerador #1] 📴 Live de 'alanzoka' finalizou; slot liberado."
+    "[01:14:21] [Minerador #1] 📴 Live de 'alanzoka' finalizou; slot liberado.",
+    "[15:25:21] [Minerador #1] 📴 Live de 'Gaules' finalizou; slot liberado."
   ],
   "statuses": {
     "Minerador #1": {
@@ -95,13 +96,13 @@
         },
         "gaules": {
           "displayName": "Gaules",
-          "isLive": true,
+          "isLive": false,
           "lastClaimAt": "",
           "login": "gaules",
           "points": 0,
-          "title": "RERUN: Jogos Variados - !socio - Siga @Gaules nas redes sociais!",
-          "viewers": 354,
-          "watching": true
+          "title": "",
+          "viewers": 0,
+          "watching": false
         },
         "loud_coringa": {
           "displayName": "",
