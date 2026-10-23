@@ -39,7 +39,8 @@
     "[01:44:21] [Minerador #1] 📴 Live de 'alanzoka' finalizou; slot liberado.",
     "[18:33:21] [Minerador #1] ⭐ Assistindo live de 'alanzoka'! Pontos: 0",
     "[01:14:21] [Minerador #1] 📴 Live de 'alanzoka' finalizou; slot liberado.",
-    "[15:25:21] [Minerador #1] 📴 Live de 'Gaules' finalizou; slot liberado."
+    "[15:25:21] [Minerador #1] 📴 Live de 'Gaules' finalizou; slot liberado.",
+    "[16:12:21] [Minerador #1] ⭐ Assistindo live de 'Baiano'! Pontos: 1090"
   ],
   "statuses": {
     "Minerador #1": {
@@ -56,13 +57,13 @@
         },
         "baiano": {
           "displayName": "Baiano",
-          "isLive": false,
+          "isLive": true,
           "lastClaimAt": "",
           "login": "baiano",
           "points": 1090,
-          "title": "",
-          "viewers": 0,
-          "watching": false
+          "title": "🟢 DIA DE LOS vs T1 NA FASE SUÍÇA DO WORLDS 2026 🟢 🌴 !cupom !sadia !status !grupo !kbmidl",
+          "viewers": 21,
+          "watching": true
         },
         "brtt": {
           "displayName": "brtt",
