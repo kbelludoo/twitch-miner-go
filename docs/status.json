@@ -40,7 +40,8 @@
     "[18:33:21] [Minerador #1] ⭐ Assistindo live de 'alanzoka'! Pontos: 0",
     "[01:14:21] [Minerador #1] 📴 Live de 'alanzoka' finalizou; slot liberado.",
     "[15:25:21] [Minerador #1] 📴 Live de 'Gaules' finalizou; slot liberado.",
-    "[16:12:21] [Minerador #1] ⭐ Assistindo live de 'Baiano'! Pontos: 1090"
+    "[16:12:21] [Minerador #1] ⭐ Assistindo live de 'Baiano'! Pontos: 1090",
+    "[17:48:21] [Minerador #1] ⭐ Assistindo live de 'Gaules'! Pontos: 0"
   ],
   "statuses": {
     "Minerador #1": {
@@ -62,7 +63,7 @@
           "login": "baiano",
           "points": 1090,
           "title": "🟢 GEN x IG (MD1) | LOS vs T1 19h30 | WORLDS 2026 🟢 🌴 !cupom !sadia !status !grupo !kbmidl",
-          "viewers": 2310,
+          "viewers": 2351,
           "watching": true
         },
         "brtt": {
@@ -97,13 +98,13 @@
         },
         "gaules": {
           "displayName": "Gaules",
-          "isLive": false,
+          "isLive": true,
           "lastClaimAt": "",
           "login": "gaules",
           "points": 0,
-          "title": "",
-          "viewers": 0,
-          "watching": false
+          "title": "RERUN: Jogos Variados - !socio - Siga @Gaules nas redes sociais!",
+          "viewers": 113,
+          "watching": true
         },
         "loud_coringa": {
           "displayName": "",
