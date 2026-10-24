@@ -42,20 +42,21 @@
     "[15:25:21] [Minerador #1] 📴 Live de 'Gaules' finalizou; slot liberado.",
     "[16:12:21] [Minerador #1] ⭐ Assistindo live de 'Baiano'! Pontos: 1090",
     "[17:48:21] [Minerador #1] ⭐ Assistindo live de 'Gaules'! Pontos: 0",
-    "[18:26:21] [Minerador #1] ⭐ Assistindo live de 'alanzoka'! Pontos: 0"
+    "[18:26:21] [Minerador #1] ⭐ Assistindo live de 'alanzoka'! Pontos: 0",
+    "[00:58:21] [Minerador #1] 📴 Live de 'alanzoka' finalizou; slot liberado."
   ],
   "statuses": {
     "Minerador #1": {
       "streamers": {
         "alanzoka": {
           "displayName": "alanzoka",
-          "isLive": true,
+          "isLive": false,
           "lastClaimAt": "",
           "login": "alanzoka",
           "points": 0,
-          "title": "hoje eu nao realmente nao sei",
-          "viewers": 5419,
-          "watching": true
+          "title": "",
+          "viewers": 0,
+          "watching": false
         },
         "baiano": {
           "displayName": "Baiano",
@@ -64,7 +65,7 @@
           "login": "baiano",
           "points": 1090,
           "title": "🟢 SORTEIO PRÓXIMOS CONFRONTOS WORLDS 2026 🟢 🌴 !cupom !sadia !status !grupo !kbmidl",
-          "viewers": 2282,
+          "viewers": 2335,
           "watching": true
         },
         "brtt": {
@@ -104,7 +105,7 @@
           "login": "gaules",
           "points": 0,
           "title": "RERUN: Jogos Variados - !socio - Siga @Gaules nas redes sociais!",
-          "viewers": 353,
+          "viewers": 345,
           "watching": true
         },
         "loud_coringa": {
