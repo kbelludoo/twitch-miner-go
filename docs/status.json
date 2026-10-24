@@ -44,7 +44,8 @@
     "[17:48:21] [Minerador #1] ⭐ Assistindo live de 'Gaules'! Pontos: 0",
     "[18:26:21] [Minerador #1] ⭐ Assistindo live de 'alanzoka'! Pontos: 0",
     "[00:58:21] [Minerador #1] 📴 Live de 'alanzoka' finalizou; slot liberado.",
-    "[04:11:21] [Minerador #1] 📴 Live de 'Baiano' finalizou; slot liberado."
+    "[04:11:21] [Minerador #1] 📴 Live de 'Baiano' finalizou; slot liberado.",
+    "[16:20:21] [Minerador #1] ⭐ Assistindo live de 'Baiano'! Pontos: 1090"
   ],
   "statuses": {
     "Minerador #1": {
@@ -61,13 +62,13 @@
         },
         "baiano": {
           "displayName": "Baiano",
-          "isLive": false,
+          "isLive": true,
           "lastClaimAt": "",
           "login": "baiano",
           "points": 1090,
-          "title": "",
-          "viewers": 0,
-          "watching": false
+          "title": "🟢 LOS vs G2 16h - WORLDS FASE SUÍÇA: DIA 2 🟢 🌴 !cupom !sadia !status !grupo !kbmidl",
+          "viewers": 54,
+          "watching": true
         },
         "brtt": {
           "displayName": "brtt",
@@ -106,7 +107,7 @@
           "login": "gaules",
           "points": 0,
           "title": "RERUN: Jogos Variados! - !socio - Siga @Gaules nas redes sociais!",
-          "viewers": 382,
+          "viewers": 396,
           "watching": true
         },
         "loud_coringa": {
