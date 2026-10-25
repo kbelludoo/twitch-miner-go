@@ -46,7 +46,8 @@
     "[00:58:21] [Minerador #1] 📴 Live de 'alanzoka' finalizou; slot liberado.",
     "[04:11:21] [Minerador #1] 📴 Live de 'Baiano' finalizou; slot liberado.",
     "[16:20:21] [Minerador #1] ⭐ Assistindo live de 'Baiano'! Pontos: 1090",
-    "[04:54:21] [Minerador #1] 📴 Live de 'Baiano' finalizou; slot liberado."
+    "[04:54:21] [Minerador #1] 📴 Live de 'Baiano' finalizou; slot liberado.",
+    "[16:37:21] [Minerador #1] ⭐ Assistindo live de 'Baiano'! Pontos: 1090"
   ],
   "statuses": {
     "Minerador #1": {
@@ -63,13 +64,13 @@
         },
         "baiano": {
           "displayName": "Baiano",
-          "isLive": false,
+          "isLive": true,
           "lastClaimAt": "",
           "login": "baiano",
           "points": 1090,
           "title": "",
           "viewers": 0,
-          "watching": false
+          "watching": true
         },
         "brtt": {
           "displayName": "brtt",
