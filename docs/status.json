@@ -45,7 +45,8 @@
     "[18:26:21] [Minerador #1] ⭐ Assistindo live de 'alanzoka'! Pontos: 0",
     "[00:58:21] [Minerador #1] 📴 Live de 'alanzoka' finalizou; slot liberado.",
     "[04:11:21] [Minerador #1] 📴 Live de 'Baiano' finalizou; slot liberado.",
-    "[16:20:21] [Minerador #1] ⭐ Assistindo live de 'Baiano'! Pontos: 1090"
+    "[16:20:21] [Minerador #1] ⭐ Assistindo live de 'Baiano'! Pontos: 1090",
+    "[04:54:21] [Minerador #1] 📴 Live de 'Baiano' finalizou; slot liberado."
   ],
   "statuses": {
     "Minerador #1": {
@@ -62,13 +63,13 @@
         },
         "baiano": {
           "displayName": "Baiano",
-          "isLive": true,
+          "isLive": false,
           "lastClaimAt": "",
           "login": "baiano",
           "points": 1090,
-          "title": "🟢 Reacts \u0026 Gameplays | IDL NIGHTS 🟢 🌴 !cupom !sadia !status !grupo !kbmidl",
-          "viewers": 237,
-          "watching": true
+          "title": "",
+          "viewers": 0,
+          "watching": false
         },
         "brtt": {
           "displayName": "brtt",
@@ -107,7 +108,7 @@
           "login": "gaules",
           "points": 0,
           "title": "RERUN: Jogos Variados! - !socio - Siga @Gaules nas redes sociais!",
-          "viewers": 281,
+          "viewers": 298,
           "watching": true
         },
         "loud_coringa": {
