@@ -48,7 +48,8 @@
     "[16:20:21] [Minerador #1] ⭐ Assistindo live de 'Baiano'! Pontos: 1090",
     "[04:54:21] [Minerador #1] 📴 Live de 'Baiano' finalizou; slot liberado.",
     "[16:37:21] [Minerador #1] ⭐ Assistindo live de 'Baiano'! Pontos: 1090",
-    "[02:35:21] [Minerador #1] 📴 Live de 'Baiano' finalizou; slot liberado."
+    "[02:35:21] [Minerador #1] 📴 Live de 'Baiano' finalizou; slot liberado.",
+    "[16:14:21] [Minerador #1] ⭐ Assistindo live de 'Baiano'! Pontos: 1090"
   ],
   "statuses": {
     "Minerador #1": {
@@ -65,13 +66,13 @@
         },
         "baiano": {
           "displayName": "Baiano",
-          "isLive": false,
+          "isLive": true,
           "lastClaimAt": "",
           "login": "baiano",
           "points": 1090,
-          "title": "",
-          "viewers": 0,
-          "watching": false
+          "title": "🟢 LOS vs TSW 16h | WORLDS 2026 | Fase Suíça - Dia 4 🟢 🌴 !cupom !sadia !status !grupo !kbmidl",
+          "viewers": 19,
+          "watching": true
         },
         "brtt": {
           "displayName": "brtt",
@@ -110,7 +111,7 @@
           "login": "gaules",
           "points": 0,
           "title": "RERUN: Lobby do Alastro! - !socio - Siga @Gaules nas redes sociais!",
-          "viewers": 316,
+          "viewers": 323,
           "watching": true
         },
         "loud_coringa": {
