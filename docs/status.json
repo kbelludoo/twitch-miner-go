@@ -47,7 +47,8 @@
     "[04:11:21] [Minerador #1] 📴 Live de 'Baiano' finalizou; slot liberado.",
     "[16:20:21] [Minerador #1] ⭐ Assistindo live de 'Baiano'! Pontos: 1090",
     "[04:54:21] [Minerador #1] 📴 Live de 'Baiano' finalizou; slot liberado.",
-    "[16:37:21] [Minerador #1] ⭐ Assistindo live de 'Baiano'! Pontos: 1090"
+    "[16:37:21] [Minerador #1] ⭐ Assistindo live de 'Baiano'! Pontos: 1090",
+    "[02:35:21] [Minerador #1] 📴 Live de 'Baiano' finalizou; slot liberado."
   ],
   "statuses": {
     "Minerador #1": {
@@ -64,13 +65,13 @@
         },
         "baiano": {
           "displayName": "Baiano",
-          "isLive": true,
+          "isLive": false,
           "lastClaimAt": "",
           "login": "baiano",
           "points": 1090,
-          "title": "🟢 React #CBLOW | IDL NIGHTS 🟢 🌴 !cupom !sadia !status !grupo !kbmidl",
-          "viewers": 462,
-          "watching": true
+          "title": "",
+          "viewers": 0,
+          "watching": false
         },
         "brtt": {
           "displayName": "brtt",
@@ -109,7 +110,7 @@
           "login": "gaules",
           "points": 0,
           "title": "RERUN: Lobby do Alastro! - !socio - Siga @Gaules nas redes sociais!",
-          "viewers": 334,
+          "viewers": 348,
           "watching": true
         },
         "loud_coringa": {
