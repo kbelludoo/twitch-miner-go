@@ -52,20 +52,21 @@
     "[16:14:21] [Minerador #1] ⭐ Assistindo live de 'Baiano'! Pontos: 1090",
     "[18:28:21] [Minerador #1] ⭐ Assistindo live de 'alanzoka'! Pontos: 0",
     "[01:04:21] [Minerador #1] 📴 Live de 'alanzoka' finalizou; slot liberado.",
-    "[03:35:21] [Minerador #1] 📴 Live de 'Baiano' finalizou; slot liberado."
+    "[03:35:21] [Minerador #1] 📴 Live de 'Baiano' finalizou; slot liberado.",
+    "[18:46:21] [Minerador #1] ⭐ Assistindo live de 'alanzoka'! Pontos: 0"
   ],
   "statuses": {
     "Minerador #1": {
       "streamers": {
         "alanzoka": {
           "displayName": "alanzoka",
-          "isLive": false,
+          "isLive": true,
           "lastClaimAt": "",
           "login": "alanzoka",
           "points": 0,
-          "title": "",
-          "viewers": 0,
-          "watching": false
+          "title": "calma",
+          "viewers": 19,
+          "watching": true
         },
         "baiano": {
           "displayName": "Baiano",
