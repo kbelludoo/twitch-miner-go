@@ -50,20 +50,21 @@
     "[16:37:21] [Minerador #1] ⭐ Assistindo live de 'Baiano'! Pontos: 1090",
     "[02:35:21] [Minerador #1] 📴 Live de 'Baiano' finalizou; slot liberado.",
     "[16:14:21] [Minerador #1] ⭐ Assistindo live de 'Baiano'! Pontos: 1090",
-    "[18:28:21] [Minerador #1] ⭐ Assistindo live de 'alanzoka'! Pontos: 0"
+    "[18:28:21] [Minerador #1] ⭐ Assistindo live de 'alanzoka'! Pontos: 0",
+    "[01:04:21] [Minerador #1] 📴 Live de 'alanzoka' finalizou; slot liberado."
   ],
   "statuses": {
     "Minerador #1": {
       "streamers": {
         "alanzoka": {
           "displayName": "alanzoka",
-          "isLive": true,
+          "isLive": false,
           "lastClaimAt": "",
           "login": "alanzoka",
           "points": 0,
-          "title": "BOA TARDE",
-          "viewers": 5587,
-          "watching": true
+          "title": "",
+          "viewers": 0,
+          "watching": false
         },
         "baiano": {
           "displayName": "Baiano",
@@ -112,7 +113,7 @@
           "login": "gaules",
           "points": 0,
           "title": "RERUN: Lobby do Alastro! - !socio - Siga @Gaules nas redes sociais!",
-          "viewers": 376,
+          "viewers": 363,
           "watching": true
         },
         "loud_coringa": {
