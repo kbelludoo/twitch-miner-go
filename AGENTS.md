@@ -1,67 +1,47 @@
-# 🛡️ REGRAS GLOBAIS DE ENGENHARIA E ANTI-BAN PARA BOTS EM GO
+# AGENTS.md — Go 1.27 & Rust Solo Agent Standard (MBVM-DB)
 
-> **ESCOPO:** Esta regra se aplica a TODOS os bots de jogos desenvolvidos a partir deste template em Go (Golang) (PokeIdle, PokeIdleWorld, LoL Idle, Baiak, Tibia Idle, Sigma, Leveling Idle, etc.).
-> **IMPORTÂNCIA:** CRÍTICA / INVIOLÁVEL. Prevenção de suspensões e integridade de contas.
+Universal configuration following the open `agents.md` specification.
+Canonical specification: `AGENTS.mbvm`.
 
----
+## Overview
+- **Languages**: Go 1.27 & Modern Rust (Stable 2021/2024 Edition). Auto-detected via `go.mod` or `Cargo.toml`.
+- **Mode**: Solo autonomous agent execution (single AI, direct action, zero external orchestrators).
+- **Context Engine**: MBVM-DB Smart Slicing (99% token reduction over raw files).
+- **Single-Ingestion Law**: Heavy assets (Protobuf, JSON catalogs, AST, game data) are ingested ONCE into `.mbvmdb` binary databases. The AI NEVER reads raw 50k+ token files. Always query `mbvm-db slice <db> <term/symbol> [depth]` (60–200 tokens, 1-3ms).
 
-## 1. 🚨 PADRÃO OBRIGATÓRIO: CIRCUIT BREAKER DE ANTI-CHEAT (`pkg/engine`)
+## Commands by Ecosystem
+### Go Ecosystem (`go.mod`)
+- **Context Slice**: `mbvm-db slice <db_or_dir> <symbol_or_term> [depth]`
+- **Test Suite**: `go test -race -count=1 -v ./...`
+- **Static Vet**: `go vet ./...`
+- **Security Audit**: `govulncheck ./...`
+- **Pre-commit Compile**: `go-tools mbvm .`
 
-Todo bot em Go DEVE utilizar o módulo padronizado `pkg/engine.CircuitBreaker`.
+### Rust Ecosystem (`Cargo.toml`)
+- **Check**: `cargo check --workspace --all-targets`
+- **Lint (Strict)**: `cargo clippy --workspace --all-targets --all-features -- -D warnings`
+- **Format**: `cargo fmt --all --check`
+- **Test Suite**: `cargo test --workspace --all-features -- --nocapture`
+- **Security Audit**: `cargo audit`
 
-### A. Gatilhos de Desarme Imediato (Trip)
-O bot deve registrar falha ou desarmar imediatamente (`cb.Trip(...)`) ao detectar qualquer um dos seguintes padrões:
-- **HTTP 429** (Too Many Requests / Rate limit)
-- **HTTP 403** (Cloudflare / WAF Challenge)
-- **Rejeição Heurística do Servidor:**
-  - `"experiência rápida demais para este personagem"` (ou qualquer variação)
-  - `"pontos de atributo demais"`
-  - `"contadores voltaram para trás"` / relógio inválido
-  - `"save malformado"`
-  - `"recusado": true`
-  - `"outraAba": true` (conflito de concorrência)
-  - `"banido": true` / aviso de suspensão
-- Use a função utilitária nativa: `engine.IsAntiCheatRejection(statusCode, body)`.
+## Architecture & Code Conventions
+### Go Conventions
+- **Errors**: Always wrap with context using `%w` (`fmt.Errorf("context: %w", err)`). Never use `%v`.
+- **Consumer-side Interfaces**: Define interfaces in the package that consumes them (*"accept interfaces, return structs"*).
+- **Goroutine Leak Prevention**: Every goroutine must have a deterministic exit path listening to `<-ctx.Done()`.
+- **Modern Stdlib**: Use `slog` for structured logging, `slices`/`maps`, `unique` for value interning, and `iter` for range-over-func.
 
-### B. Ações Obrigatórias ao Desarmar (Trip):
-1. **Desarmar Combate:** Parar de bater ou matar monstros imediatamente (`AutoHunt = false`).
-2. **Recuo para Zona Segura:** Mover o personagem para a Fonte, Templo, Cidade ou Depot (`local: "fonte"`).
-3. **Pausa Absoluta de Saves (Cooldown de 15 a 30 minutos):** NUNCA insistir em novos `PUT /api/save` ou pacotes de progresso após uma recusa. A insistência é o que dispara o algoritmo de ban automático de 7 dias por "uso de programas de terceiros".
-4. **Recuperação em Half-Open:** Quando o cooldown expirar, recarregar o estado canônico exclusivamente via `GET /api/eu` (ou equivalente oficial) antes de testar qualquer nova ação.
+### Rust Conventions
+- **Error Handling**: Use `thiserror` for crates/libraries and `anyhow` for binaries/CLIs with `.context(...)`. Always propagate with `?`.
+- **Never `.unwrap()` in Production**: Only use `.expect("invariant context")` when an invariant violation is mathematically impossible.
+- **Unsafe Boundaries**: Avoid `unsafe`. Any necessary `unsafe` block MUST be preceded by an explicit `// SAFETY:` explanation.
+- **Async Runtime**: Never block Tokio worker threads with synchronous file I/O or heavy computation; use `tokio::task::spawn_blocking`.
+- **Agent Loops**: Bound all autonomous loops with hard `max_iterations` and timeout bounds.
 
----
-
-## 2. 👥 REGRA DA TAXA COLETIVA EM GRUPO (COLLECTIVE THROTTLING)
-
-Quando o bot operar em party/grupo cooperativo com compartilhamento de abates e bônus de EXP via WebSocket:
-- A taxa de monstros por minuto de CADA membro individual deve ser reduzida proporcionalmente.
-- **Fórmula Obrigatória:**
-  $$\text{KillRate}_{\text{individual}} \le \frac{\text{KillRate}_{\text{solo\_seguro}}}{N_{\text{membros}} \times (1 + \text{BônusGrupo})}$$
-- Use o helper nativo do template: `engine.CalculatePartyMaxKillRate(soloRate, partySize, bonusExpPercent)`.
-- **Exemplo Real:** Se o teto seguro solo for 40 kills/min, em grupo de 4 com bônus de 45%, cada bot deve matar no máximo ~6.89 monstros/minuto (~8.7 segundos por monstro).
-
----
-
-## 3. 🧩 PRESERVAÇÃO DE SCHEMA (`RawEstado map[string]any`)
-
-- Nunca envie saves derivados apenas de structs parciais de Go.
-- Guarde o JSON bruto recebido do servidor em `RawEstado map[string]any`.
-- Altere apenas os campos estritamente necessários (ouro, level, exp) e reenvie o envelope completo `{ "estado": raw }`.
-- Isso evita o erro de `"save malformado"` que ocorre quando o servidor espera dezenas de chaves adicionais (conquistas, gemas, skins, montaria, espolios, etc.).
-
----
-
-## 4. 🔒 ISOLAMENTO DE INSTÂNCIAS E SESSÕES
-
-- **`X-Instancia` Único:** Gere uma string única na inicialização (`Math.random() + Date.now()`) e envie em todas as requisições para evitar `outraAba: true`.
-- **Multi-Contas com Multi-IP:** Quando rodar múltiplas contas na mesma VPS, configure IPs secundários (`bindIP: "10.0.0.X"`) usando `net.Dialer{LocalAddr: ...}` no HTTP e WebSocket.
-- **Contas Distintas para Party:** Cada vaga no grupo deve ser uma conta cadastrada separada. Nunca conecte a mesma conta mais de uma vez.
-
----
-
-## 5. 🛡️ SEGURANÇA DE DADOS, STEALTH E ZERO HARDCODING
-
-1. **Zero Credenciais no Git:** NUNCA commite tokens, cookies, senhas, IPs de VPS ou arquivos `.key`. Use sempre `accounts.json` (no `.gitignore`) ou variáveis de ambiente.
-2. **Nomes Anônimos no Dashboard Público:** NUNCA publique o nome real do personagem no GitHub Pages ou status público. Exiba sempre vocação/classe, índice da conta (`Conta #1`) e métricas técnicas.
-3. **Consumo Leve na VPS:** Processo em Go puro, sem Chromium/Puppeteer na VPS, mantendo RAM abaixo de 15 MB por bot.
-4. **Resiliência Total:** Toda conta deve rodar dentro de `engine.RunWithSupervisor` com `recover()`.
+## Universal Never-Do List (Guardrails)
+- Never read raw heavy catalogs, Protobuf definitions, or whole packages when a `.mbvmdb` exists.
+- Never omit `-race` or `-count=1` in Go tests.
+- Never commit Rust code with warnings or failing `cargo clippy -- -D warnings`.
+- Never use `time.Sleep` for concurrency synchronization in tests.
+- Never commit secrets, API keys, or `.env` files.
+- Never commit with `--no-verify`.

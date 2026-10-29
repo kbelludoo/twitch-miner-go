@@ -1,0 +1,40 @@
+# Mandatory Global MB-VM, Go & Rust Solo Agent Rule for Cursor
+
+## MODO PADRÃO: AUTO (Agent)
+- Cursor DEVE SEMPRE iniciar em modo Auto (Agent mode).
+- NUNCA usar modo Ask ou Composer como padrão.
+- Execução direta e autônoma: edições, compilações e validações automáticas.
+
+## REGRAS GERAIS & BEST PRACTICES (Go 1.27 & Rust Dual Standard)
+1. SOLO AGENT ONLY: Resolução direta por um único agente CLI. Sem orquestradores intermediários nem sobrecarga de delegação.
+2. DETECÇÃO AUTOMÁTICA DE ECOSSISTEMA:
+   - Se `go.mod` existir -> Aplicar regras e qualidade Go.
+   - Se `Cargo.toml` existir -> Aplicar regras e qualidade Rust.
+3. GO PRIMARY & IDIOMÁTICO:
+   - Modern Go: `slog`, `slices`/`maps`, `unique`, `iter`.
+   - **Error Wrapping (%w only):** Sempre use `fmt.Errorf("context: %w", err)`. Proibido usar `%v` para erros.
+   - **Consumer-side Interfaces:** Defina interfaces no pacote consumidor (*"accept interfaces, return structs"*).
+   - **Goroutine Leak Prevention:** Goroutines DEVEM escutar `ctx.Done()`.
+   - Testes: `go test -race -count=1 -v ./...` e `go vet ./...`.
+4. RUST PRIMARY & ZERO-WARNING QUALITY:
+   - Strict Clippy: `cargo clippy --workspace --all-targets --all-features -- -D warnings` obrigatório sem avisos.
+   - Testes: `cargo test --workspace --all-features -- --nocapture`.
+   - Error Handling: `thiserror` para crates/libs, `anyhow` para binários com `.context(...)`. Operador `?` obrigatório.
+   - Banimento de `.unwrap()`: Proibido em código de produção. Use `.expect("invariante")` somente com justificativa matemática.
+   - Unsafe Guardrails: `#![forbid(unsafe_code)]` por padrão; qualquer bloco `unsafe` exige comentário `// SAFETY:`.
+   - Concorrência Assíncrona: Nunca bloqueie worker threads do Tokio; use `tokio::task::spawn_blocking` para I/O síncrono.
+   - Agent Loops: Todo loop autônomo (ReAct) deve possuir trava de `max_iterations` e timeout.
+5. ROOT-CAUSE FIRST & MINIMAL DIFFS:
+   - Ataque sempre a causa-raiz; nunca aplique "curativos". Edições mínimas e cirúrgicas.
+6. MB-VM & MBVM-DB FIRST (SINGLE-INGESTION & SMART SLICING):
+   - **Single-Ingestion Law:** Arquivos pesados (Protobuf, catálogos JSON, pacotes inteiros, dados de jogos) são processados uma única vez em bancos binários `.mbvmdb`.
+   - **A IA NUNCA lê arquivos brutos de dezenas de milhares de tokens.** Sempre execute `mbvm-db slice <db> <termo/símbolo> [depth]` (retorna a fatia exata em 1–3ms com 60–200 tokens).
+   - **Camada 1 (AST):** Consulte `codebase.mbvm` para obter assinaturas globais antes de ler arquivos brutos.
+   - **Camada 2 (MCP):** Ferramentas MCP comprimidas para assinaturas tipadas de 1 linha.
+   - **Camada 3 (Runtime/DB):** Cache e runtime gravados como micro-bytecode no SQLite (`page_bytecodes.db`).
+7. MODULARITY: Limite estrito de 400 linhas por arquivo.
+8. GIT GLOBAL PRE-COMMIT:
+   - Hook global `~/.git-hooks/pre-commit` recompila `codebase.mbvm` via `go-tools mbvm .` e valida integridade via `mbvm-db inspect .` a cada commit.
+
+## Fonte Canônica
+Seguir `AGENTS.mbvm` na raiz do projeto.

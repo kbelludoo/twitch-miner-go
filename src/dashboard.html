@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Twitch Miner Go — Dashboard</title>
+  <title>🟣 Twitch Miner Rust — Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     :root {
@@ -33,13 +33,16 @@
     .points-label { font-size: 12px; color: var(--subtext); }
     .logs-container { background: #000; border: 1px solid var(--border); border-radius: 12px; padding: 15px; font-family: "Courier New", monospace; font-size: 13px; height: 260px; overflow-y: auto; color: #a3e635; }
     .log-line { margin-bottom: 4px; white-space: pre-wrap; }
+    .meta { color: var(--subtext); font-size: 13px; margin-bottom: 15px; }
   </style>
 </head>
 <body>
   <div class="header">
-    <div class="title">🟣 <span>Twitch Miner Go</span></div>
-    <div class="badge">Ultra-Leve (~2MB RAM) • Auto-Baú (+50)</div>
+    <div class="title">🟣 <span>Twitch Miner Rust</span></div>
+    <div class="badge">Native Rust • Auto-Baú (+50) • Zero Navegadores</div>
   </div>
+
+  <div class="meta" id="metaInfo">Carregando...</div>
 
   <h2 id="watchHeading" style="font-size: 16px; margin-bottom: 15px; color: var(--subtext);">Canais monitorados</h2>
   <div class="grid" id="channelsGrid"></div>
@@ -49,43 +52,48 @@
 
   <script>
     async function update() {
+      let data;
       try {
         const res = await fetch('/api/status');
-        const data = await res.json();
-        
-        const grid = document.getElementById('channelsGrid');
-        grid.innerHTML = '';
-        let watchingCount = 0;
-        
-        for (const [user, acc] of Object.entries(data.statuses || {})) {
-          for (const [streamer, info] of Object.entries(acc.streamers || {})) {
-            const isLive = info.isLive;
-            const watching = info.watching;
-            if (watching) watchingCount++;
-            const pillClass = watching ? 'status-live' : (isLive ? 'status-queue' : 'status-off');
-            const pillText = watching ? '● ASSISTINDO' : (isLive ? 'AO VIVO' : 'OFFLINE');
-            grid.innerHTML += `
-              <div class="card">
-                <div class="card-top">
-                  <div class="channel-name">${info.displayName || streamer}</div>
-                  <div class="status-pill ${pillClass}">
-                    ${pillText}
-                  </div>
-                </div>
-                <div class="points-val">${info.points.toLocaleString()} pts</div>
-                <div class="points-label">${isLive ? (info.title || 'Em transmissão') : 'Aguardando live...'}</div>
-              </div>
-            `;
-          }
-        }
-        document.getElementById('watchHeading').textContent = 'Canais monitorados · assistindo ' + watchingCount;
-        
-        const logsDiv = document.getElementById('logsContainer');
-        logsDiv.innerHTML = (data.logs || []).map(l => '<div class="log-line">' + l + '</div>').join('');
-        logsDiv.scrollTop = logsDiv.scrollHeight;
+        data = await res.json();
       } catch (e) {
-        console.error(e);
+        try {
+          const res = await fetch('./status.json');
+          data = await res.json();
+        } catch (_) { return; }
       }
+
+      const meta = document.getElementById('metaInfo');
+      meta.textContent = `RAM: ${(data.ram_mb || 0).toFixed(2)} MB  |  Uptime: ${data.uptime || '-'}`;
+
+      const grid = document.getElementById('channelsGrid');
+      grid.innerHTML = '';
+      let watchingCount = 0;
+
+      for (const [user, acc] of Object.entries(data.statuses || {})) {
+        for (const [streamer, info] of Object.entries(acc.streamers || {})) {
+          const isLive = info.isLive;
+          const watching = info.watching;
+          if (watching) watchingCount++;
+          const pillClass = watching ? 'status-live' : (isLive ? 'status-queue' : 'status-off');
+          const pillText = watching ? '● ASSISTINDO' : (isLive ? 'AO VIVO' : 'OFFLINE');
+          grid.innerHTML += `
+            <div class="card">
+              <div class="card-top">
+                <div class="channel-name">${info.displayName || streamer}</div>
+                <div class="status-pill ${pillClass}">${pillText}</div>
+              </div>
+              <div class="points-val">${(info.points || 0).toLocaleString()} pts</div>
+              <div class="points-label">${isLive ? (info.title || 'Em transmissão') : 'Aguardando live...'}</div>
+            </div>
+          `;
+        }
+      }
+      document.getElementById('watchHeading').textContent = 'Canais monitorados · assistindo ' + watchingCount;
+
+      const logsDiv = document.getElementById('logsContainer');
+      logsDiv.innerHTML = (data.logs || []).map(l => '<div class="log-line">' + l + '</div>').join('');
+      logsDiv.scrollTop = logsDiv.scrollHeight;
     }
     update();
     setInterval(update, 3000);

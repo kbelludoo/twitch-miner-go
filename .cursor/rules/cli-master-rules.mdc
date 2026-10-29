@@ -1,0 +1,10 @@
+﻿---
+description: CLI Master Rules unificadas MB-VM, MBVM-DB & Go Solo (fonte AGENTS.mbvm)
+globs: "*"
+alwaysApply: true
+---
+
+# CLI Master Rules (MB-VM, MBVM-DB & Go Solo)
+
+Siga obrigatoriamente o arquivo `AGENTS.mbvm` na raiz deste projeto (fonte: cli-master-rules).
+Regras-chave: Execucao SOLO direta (1 unica IA autonoma); Linguagem primaria Go (Go-first, tipagem estrita, err != nil, early return, go test -v); MBVM-DB Smart Slicing (mbvm-db slice . <symbol> [depth] antes de ler arquivos brutos); Padrao MB-VM (3 camadas: codebase.mbvm, ferramentas MCP com assinatura tipada de 1 linha, bytecode no SQLite); Modularity max 400 linhas; Git Global Pre-Commit Hook (recompila codebase.mbvm e valida com mbvm-db inspect).

@@ -1,0 +1,26 @@
+@MBVM:cli-master-rules:3.6.0%rules=22%clis=all%tokensave=99%%lang=go1.27+rust%mode=solo%engine=mbvm-db
+^R0:mbvm_canonical!mbvm_db_engine!smart_slicing_first!immutable_binary_db_first!query[mbvm-db slice <db> <symbol/term> <depth>]!no_raw_heavy_reads!dual_storage
+~Storage{canonical="codebase.mbvm"!databases="*.mbvmdb"!engine="mbvm-db"!source="."!cache="page_bytecodes.db"!traceability=crc32}
+~Measurement{lines!bytes!context_reduction!semantic_complexity!bytecode_density}
+^R1:execution=solo_agent_only!single_ai_direct_resolution!no_external_orchestrator!zero_delegation_overhead
+^R2:backup=git_push_every_change!gdrive_daily!backup_script
+^R3:modularity=max_loc_400!refactor_near_limit!submodulos_coesos!targeted_diffs_no_bloat
+^R4:tokens=subtraction_over_accumulation!single_ingestion_law!never_read_raw_catalogs_or_protobufs!query_mbvmdb_first!scripts_first!pack[cmd]!context_before_dump
+^R5:security=no_expose_secrets!maskSecret()!os_root_sandbox!govulncheck_clean!cargo_audit_clean!sanitized_payloads!no_eval!no_unsafe!least_privilege
+^R6:skills=auto_search!mandatory_follow!cross_cli_compatible
+^R7:dispatch=solo_direct!immediate_execution!return_structured[status,resumo,files]
+^R8:code_style=dual_primary[go1.27,rust]!go[slog,slices,unique,iter,err_wrap_w,consumer_interfaces,ctx_done_select]!rust[strict_clippy_D_warnings,no_unwrap_in_prod,thiserror_or_anyhow,tokio_spawn_blocking,safety_comments]!early_return!strict_types
+^R9:git=branch_max_3_words_hyphen!commit_type(scope):summary!scopes[core,opencode,tui,app,desktop,sdk,plugin]
+^R10:tests=compiler_as_truth!go_test[go_test_-race_-count=1_-v]!rust_test[cargo_test_--all-features,cargo_clippy_--_-D_warnings]!table_tests!packages/opencode
+^R11:scan=mandatory_pre_commit!hook[git_global:core.hooksPath]!auto_compile[go-tools mbvm .]!auto_inspect[mbvm-db inspect .]!auto_stage[codebase.mbvm]!no_verify_prohibited
+^R12:tdd=contract_driven!root_cause_over_symptom_patch!reproduce_test_first!feedback_loop_max_3!auto_curate
+^R13:autonomous=immediate_execution!deterministic_checkpoints!deliver_working_software
+^R14:context=mbvm_db_slicing!immutable_binary_db[codebase.mbvmdb,game.mbvmdb]!single_read_on_ingest!query_slices_only!total_coverage_100%!zero_obsolescence!no_hallucination
+^R15:mbvm=canonical_format!mbvm_db_query_engine!sigilos_95_to_99%_tokensave!mcp_typed_1line!browser_sqlite_page_bytecodes
+^R16:lang=code_en_us!comments_en_us!chat_pt_br!commits_en_us
+^R17:typecheck=go_compiler!cargo_clippy!ast_validation!zero_external_dep!structs_interfaces_validated
+^R18:clean_mbvm=compact_signatures_only!no_human_comments_in_bytecode
+^R19:mbvm_spec=protocols/MBVM.md!codebase_mbvm_root!mbvm_db_cli!mcp_tools_1line_sig!page_bytecodes_db
+^R20:contracts=mbvm_only!all_tool_schemas_and_contracts_in_mbvm!no_bloated_json_schemas
+^R21:mode=strict_solo!direct_agent_execution_only!zero_external_proxies
+^R22:context_rich=per_project!engine=mbvm-db!subgraph_slice[mbvm-db slice <db> <symbol> <depth>]!immutable_databases[*.mbvmdb]!zero_token_waste

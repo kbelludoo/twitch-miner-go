@@ -1,0 +1,27 @@
+[package]
+name = "bot-twitchminer-rust"
+version = "0.1.0"
+edition = "2021"
+description = "Twitch Channel Points Miner — native Rust port of twitch-miner-go"
+repository = "https://github.com/kbelludoo/twitch-miner-go"
+
+[[bin]]
+name = "bot-twitchminer-rust"
+path = "src/main.rs"
+
+[dependencies]
+tokio = { version = "1", features = ["full"] }
+tokio-tungstenite = { version = "0.24", default-features = false, features = ["rustls-tls-webpki-roots", "connect"] }
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls", "http2"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+axum = "0.7"
+anyhow = "1"
+thiserror = "2"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+futures-util = "0.3"
+rand = "0.8"
+hex = "0.4"
+tokio-util = "0.7"
+chrono = { version = "0.4", features = ["serde"] }
